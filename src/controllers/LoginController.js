@@ -13,7 +13,17 @@ class LoginController {
 
             const token = sign({ sub: usuario.id, email: usuario.email, nome: usuario.nome, usuario_id: usuario.id }, process.env.SECRET_JWT);
 
-            res.json({ token });
+            // Enviando o token e os dados do usuário em uma única resposta
+            res.json({
+                user: {
+                    id: usuario.id,
+                    nome: usuario.nome,
+                    email: usuario.email
+                },
+                token: token
+            });
+
+
         } catch (error) {
             console.error(error.message);
             res.status(500).json({ error: 'Não foi possível fazer login' });
