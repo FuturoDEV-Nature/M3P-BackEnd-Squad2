@@ -108,7 +108,7 @@ class DestinoController {
     }
 
     async listarDestinoEspecifico(req, res) {
-        try {
+            try {
             const { destino_id } = req.params;
             const usuario_id = req.usuario_id
             const destino = await Destino.findOne({
@@ -148,6 +148,25 @@ class DestinoController {
         }
     }
     
+    async listarDestinoUsuario(req, res) {
+        try {
+          const { id } = req.params;
+    
+          const local = await Destino.findAll({ where: { usuario_id: id } });
+    
+          if (!local) {
+            return res.status(404).json({ message: "Local não encontrado -- Paula" });
+       }
+    
+         res.json(local);
+       } catch (error) {
+        console.log(error.message);
+        res.status(500).json({
+           error: "Não é possível listar os locais do usuário -- Paula",
+          error: error,
+        });
+       }
+       }
 }
 
 module.exports = new DestinoController();
