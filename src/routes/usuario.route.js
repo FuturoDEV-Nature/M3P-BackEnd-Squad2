@@ -22,6 +22,9 @@ usuarioRoutes.post('/', UsuarioController.cadastrar
     */
 );
 
+usuarioRoutes.get('/:cpf', UsuarioController.verificarCPF);
+
+
 usuarioRoutes.get('/', auth, UsuarioController.listar
     /*  
         #swagger.tags = ['Usuario']
@@ -80,5 +83,7 @@ usuarioRoutes.delete('/:id', auth, UsuarioController.excluir
         }
     */
 );
+
+
 
 module.exports = usuarioRoutes;
