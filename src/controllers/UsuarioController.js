@@ -25,7 +25,32 @@ class UsuarioController {
             res.status(500).json({ error: 'Não foi possível cadastrar o usuário' });
         }
     }
-
+    
+    async verificarCPF(req, res) {
+        try {
+            const { cpf } = req.params;
+    
+            // Verifica se o CPF foi fornecido
+            if (!cpf) {
+                return res.status(400).json({ message: "CPF é obrigatório." });
+            }
+    
+            const usuario = await Usuario.findOne({
+                where: { cpf }
+            });
+    
+            // Retorna a resposta apropriada
+            if (usuario) {
+                return res.status(409).json({ message: "Já existe um usuário cadastrado com este CPF." });
+            } else {
+                return res.status(200).json({ message: "CPF disponível." });
+            }
+        } catch (error) {
+            console.error("Erro ao verificar o CPF:", error);
+            return res.status(500).json({ message: "Erro ao consultar o banco de dados." });
+        }
+    }
+    
     async listar(req, res) {
         try {
             const usuarios = await Usuario.findAll();
