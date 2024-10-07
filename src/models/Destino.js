@@ -2,17 +2,24 @@ const { DataTypes } = require('sequelize');
 const { connection } = require('../database/connection');
 
 const Destino = connection.define('destino', {
+  nomelocal: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   cep: {
     type: DataTypes.STRING(9),
-    allowNull: false
+    allowNull: true
   },
   endereco: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  descricao: {
-    type: DataTypes.TEXT,
+  numero: {
+    type: DataTypes.STRING,
     allowNull: false
+  },
+  cidade: {
+    type: DataTypes.STRING
   },
   latitude: {
     type: DataTypes.DECIMAL(10, 6),
@@ -21,6 +28,10 @@ const Destino = connection.define('destino', {
   longitude: {
     type: DataTypes.DECIMAL(10, 6),
     allowNull: true
+  },
+  descricao: {
+    type: DataTypes.TEXT,
+    allowNull: false
   },
   maps_url: {
     type: DataTypes.STRING, 
