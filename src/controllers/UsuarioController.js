@@ -26,31 +26,6 @@ class UsuarioController {
         }
     }
 
-    async login(req, res) {
-        try {
-            const { email, senha } = req.body;
-
-            if (!email || !senha) {
-                return res.status(400).json({ message: 'Email e senha são obrigatórios' });
-            }
-
-            const usuario = await Usuario.findOne({ where: { email } });
-
-            if (!usuario || !Usuario.comparePassword(senha, usuario.senha)) {
-                return res.status(401).json({ message: 'Email ou senha inválidos' });
-            }
-
-            // Gerar o token JWT
-            const token = sign({ sub: usuario.id }, process.env.SECRET_JWT, { expiresIn: '1h' });
-
-            res.status(200).json({ token });
-
-        } catch (error) {
-            console.error(error.message);
-            res.status(500).json({ error: 'Erro ao fazer login' });
-        }
-    }
-
     async listar(req, res) {
         try {
             const usuarios = await Usuario.findAll();
