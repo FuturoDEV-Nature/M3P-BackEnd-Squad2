@@ -3,11 +3,11 @@ const Usuario = require("../models/Usuario");
 class UsuarioController {
     async cadastrar(req, res) {
         try {
-            const { email, senha, nome, sexo, cpf } = req.body;
+            const { email, senha, nome, sexo, cpf, dataNascimento, rua, bairro, cidade, uf } = req.body;
 
             // Validar campos obrigatórios
-            if (!nome || !cpf) {
-                return res.status(400).json({ message: 'Nome e CPF são obrigatórios' });
+            if (!nome || !cpf || !bairro || !cidade || !uf) {
+                return res.status(400).json({ message: 'Nome, CPF, Bairro, Cidade e UF são obrigatórios' });
             }
 
             const novoUsuario = await Usuario.create({
@@ -16,6 +16,11 @@ class UsuarioController {
                 nome,
                 sexo,
                 cpf,
+                dataNascimento,
+                rua,
+                bairro,
+                cidade,
+                uf
             });
 
             res.status(201).json(novoUsuario);
@@ -84,10 +89,10 @@ class UsuarioController {
                 return res.status(403).json({ message: 'Você não tem permissão para editar este usuário' });
             }
 
-            const { nome, sexo, cpf } = req.body;
+            const { nome, sexo, cpf, dataNascimento, rua, bairro, cidade, uf } = req.body;
 
-            if (!nome || !sexo || !cpf) {
-                return res.status(400).json({ message: 'Nome, sexo e CPF são obrigatórios' });
+            if (!nome || !sexo || !cpf || !bairro || !cidade || !uf) {
+                return res.status(400).json({ message: 'Nome, sexo, CPF, Bairro, Cidade e UF são obrigatórios' });
             }
 
             const usuario = await Usuario.findByPk(id);
@@ -99,9 +104,15 @@ class UsuarioController {
             usuario.nome = nome;
             usuario.sexo = sexo;
             usuario.cpf = cpf;
-    
+            usuario.dataNascimento = dataNascimento;
+            usuario.rua = rua;
+            usuario.bairro = bairro;
+            usuario.cidade = cidade;
+            usuario.uf = uf;
+
             await usuario.save();
 
+            res.status(200).json(usuario); // Retorna o usuário atualizado
         } catch (error) {
             console.error(error.message);
             res.status(500).json({ error: 'Não foi possível editar o usuário' });

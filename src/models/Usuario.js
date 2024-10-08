@@ -31,6 +31,26 @@ const Usuario = connection.define('usuarios', {
     senha: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    dataNascimento: {
+        type: DataTypes.DATE,
+        allowNull: true
+    },
+    rua: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    bairro: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    cidade: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    uf: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 }, {
     timestamps: true

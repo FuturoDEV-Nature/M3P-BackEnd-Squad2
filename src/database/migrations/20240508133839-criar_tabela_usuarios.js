@@ -32,6 +32,26 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      dataNascimento: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
+      rua: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      bairro: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      cidade: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      uf: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -42,6 +62,7 @@ module.exports = {
       }
     });
   },
+  
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('usuarios');
   }
