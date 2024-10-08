@@ -3,24 +3,23 @@ const Usuario = require("../models/Usuario");
 class UsuarioController {
     async cadastrar(req, res) {
         try {
-            const { email, senha, nome, sexo, cpf, dataNascimento, rua, bairro, cidade, uf } = req.body;
+            const { email, senha, nome, sobrenome, sexo, cpf, dataNascimento, endereco, numero, cep } = req.body;
 
-            // Validar campos obrigatórios
-            if (!nome || !cpf || !bairro || !cidade || !uf) {
-                return res.status(400).json({ message: 'Nome, CPF, Bairro, Cidade e UF são obrigatórios' });
+            if (!nome || !sobrenome || !cpf || !endereco || !numero || !cep) {
+                return res.status(400).json({ message: 'Nome, Sobrenome, CPF, Endereço, Número e CEP são obrigatórios' });
             }
 
             const novoUsuario = await Usuario.create({
                 email,
                 senha,
                 nome,
+                sobrenome,
                 sexo,
                 cpf,
                 dataNascimento,
-                rua,
-                bairro,
-                cidade,
-                uf
+                endereco,
+                numero,
+                cep
             });
 
             res.status(201).json(novoUsuario);
