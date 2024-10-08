@@ -4,7 +4,7 @@ const { auth } = require('../middleware/auth');
 
 const destinoRoutes = new Router();
 
-destinoRoutes.post('/', auth, DestinoController.cadastrar
+destinoRoutes.post('/cadastrolocais', auth, DestinoController.cadastrar
         /*  
         #swagger.tags = ['Destino']
         #swagger.parameters['body'] = {
@@ -47,7 +47,7 @@ destinoRoutes.get('/', auth, DestinoController.listar
     */
 // );
 
-destinoRoutes.put('/:id', auth, DestinoController.atualizar
+destinoRoutes.put('/cadastrolocais/:id', auth, DestinoController.atualizar
     /*  
     #swagger.tags = ['Destino']
     #swagger.parameters['auth'] = {
@@ -79,7 +79,7 @@ destinoRoutes.delete('/:id', auth, DestinoController.excluir
     */
 );
 
-destinoRoutes.get('/:destino_id', auth, DestinoController.listarDestinoEspecifico
+destinoRoutes.get('/cadastrolocais/:destino_id', auth, DestinoController.listarDestinoEspecifico
     /*  
     #swagger.tags = ['Destino']
     #swagger.parameters['auth'] = {
