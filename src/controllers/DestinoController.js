@@ -65,7 +65,7 @@ class DestinoController {
     async atualizar(req, res) {
         try {
             const { id } = req.params;
-            const { cep, endereco, descricao } = req.body;
+            const { nomelocal, cep, endereco, numero, cidade, descricao, maps_url } = req.body;
 
             const destino = await Destino.findByPk(id);
             if (!destino) {
@@ -74,12 +74,16 @@ class DestinoController {
 
             const { latitude, longitude } = await mapService.getCepCoordinates(cep);
 
+            destino.nomelocal = nomelocal;
             destino.cep = cep;
             destino.endereco = endereco;
-            destino.descricao = descricao;
+            destino.numero = numero;
+            destino.cidade = cidade;
             destino.latitude = latitude;
             destino.longitude = longitude;
-
+            destino.descricao = descricao;
+            destino.maps_url = maps_url;
+            
             await destino.save();
 
             res.status(200).json({ message: 'Destino atualizado com sucesso' });
@@ -119,7 +123,8 @@ class DestinoController {
                 return res.status(404).json({ message: "Destino não encontrado" });
             }
     
-            res.json( {link: destino.maps_url });
+            res.json(destino);
+            //res.json( {link: destino.maps_url });
         } catch (error) {
             console.error(error.message);
             res.status(500).json({ error: 'Erro ao listar destino específico do usuário' });
