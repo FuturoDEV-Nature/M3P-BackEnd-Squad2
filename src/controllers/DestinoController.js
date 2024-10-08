@@ -160,14 +160,14 @@ class DestinoController {
           const local = await Destino.findAll({ where: { usuario_id: id } });
     
           if (!local) {
-            return res.status(404).json({ message: "Local não encontrado -- Paula" });
+            return res.status(404).json({ message: "Local não encontrado" });
        }
     
          res.json(local);
        } catch (error) {
         console.log(error.message);
         res.status(500).json({
-           error: "Não é possível listar os locais do usuário -- Paula",
+           error: "Não é possível listar os locais do usuário",
           error: error,
         });
        }
