@@ -6,7 +6,7 @@ class DestinoController {
 
     async cadastrar(req, res) {
         try {
-            const { cep, endereco, descricao } = req.body;
+            const { nomelocal, cep, endereco, numero, cidade, descricao, maps_url } = req.body;
             const usuario_id = req.usuario_id;
 
             if (!usuario_id) {
@@ -17,17 +17,29 @@ class DestinoController {
                 return res.status(400).json({ message: 'CEP, endereço e descrição são obrigatórios' });
             }
 
-            const { latitude, longitude } = await mapService.getCepCoordinates(cep);
-            const mapsUrl = mapService.generateGoogleMapsLink(latitude, longitude);
+            const coordinates = await mapService.getCepCoordinates(cep);
+
+            if (!coordinates || !coordinates.latitude || !coordinates.longitude) {
+                return res.status(400).json({ message: 'Coordenadas não encontradas para o CEP fornecido' });
+            }
+            
+            const { latitude, longitude } = coordinates;
+            
+
+
+            // const { latitude, longitude } = await mapService.getCepCoordinates(cep);
+            // console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+            // const mapsUrl = mapService.generateGoogleMapsLink(latitude, longitude);
 
             const novoDestino = await Destino.create({
-                cep,
-                endereco,
+                nomelocal,
+               cep,
+               endereco,
+                numero,
+                cidade,
                 descricao,
-                latitude,
-                longitude,
-                usuario_id,
-                maps_url: mapsUrl
+               maps_url,
+               usuario_id               
             });
 
             res.status(201).json(novoDestino);
