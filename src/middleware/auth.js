@@ -3,7 +3,8 @@ const Usuario = require('../models/Usuario');
 
 const auth = async (req, res, next) => {
     try {
-        const token = req.headers.authorization?.split(' ')[1]; // Obtém o token após "Bearer"
+        console.log(req.headers.authorization)
+        const token = req.headers.authorization?.split(' ')[0]; // Obtém o token após "Bearer"
         if (!token) {
             return res.status(401).json({ message: 'Token de autenticação não fornecido' });
         }

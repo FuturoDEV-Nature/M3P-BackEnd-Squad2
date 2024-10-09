@@ -6,8 +6,8 @@ class DestinoController {
 
     async cadastrar(req, res) {
         try {
-            const { nomelocal, cep, endereco, numero, cidade, descricao, maps_url } = req.body;
-            const usuario_id = req.usuario_id;
+            console.log(req.body)
+            const { nomelocal, cep, endereco, numero, cidade, descricao, maps_url, usuario_id } = req.body;
 
             if (!usuario_id) {
                 return res.status(401).json({ message: 'ID do usuário não fornecido' });
@@ -126,9 +126,8 @@ class DestinoController {
     async listarDestinoEspecifico(req, res) {
             try {
             const { destino_id } = req.params;
-            const usuario_id = req.usuario_id
             const destino = await Destino.findOne({
-                where: { usuario_id, destino_id }
+                where: { destino_id }
             });
     
             if (!destino) {
