@@ -14,6 +14,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      sobrenome: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       sexo: {
         type: Sequelize.STRING,
         allowNull: false
@@ -36,19 +40,15 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: true,
       },
-      rua: {
+      endereco: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      bairro: {
+      numero: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      cidade: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      uf: {
+      cep: {
         type: Sequelize.STRING,
         allowNull: true,
       },
