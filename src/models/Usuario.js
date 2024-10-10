@@ -51,6 +51,11 @@ const Usuario = connection.define('usuarios', {
     cep: {
         type: DataTypes.STRING,
         allowNull: true
+    },
+    isLogado: {
+        type:DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     }
 }, {
     timestamps: true

@@ -11,6 +11,11 @@ class LoginController {
                 return res.status(401).json({ message: "Credenciais inválidas" });
             }
 
+            await Usuario.update(
+                { isLogado: true },
+                { where: { id: usuario.id } }
+            );
+
             const token = sign({ sub: usuario.id, email: usuario.email, nome: usuario.nome, usuario_id: usuario.id }, process.env.SECRET_JWT);
 
             // Enviando o token e os dados do usuário em uma única resposta
@@ -18,7 +23,8 @@ class LoginController {
                 user: {
                     id: usuario.id,
                     nome: usuario.nome,
-                    email: usuario.email
+                    email: usuario.email,
+                    isLogado: usuario.isLogado
                 },
                 token: token
             });
