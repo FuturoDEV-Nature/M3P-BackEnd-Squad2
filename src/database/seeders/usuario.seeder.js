@@ -16,6 +16,7 @@ module.exports = {
         dataNascimento: '1985-08-20',
         createdAt: new Date(),
         updatedAt: new Date(),
+        isLogado: false,
       },
       {
         nome: 'Maria',
@@ -30,6 +31,7 @@ module.exports = {
         dataNascimento: '1990-01-15',
         createdAt: new Date(),
         updatedAt: new Date(),
+        isLogado: false,
       },
       {
         nome: 'Carlos',
@@ -44,6 +46,7 @@ module.exports = {
         dataNascimento: '1988-05-30',
         createdAt: new Date(),
         updatedAt: new Date(),
+        isLogado: false,
       },
       {
         nome: 'Ana',
@@ -58,6 +61,7 @@ module.exports = {
         dataNascimento: '1992-03-22',
         createdAt: new Date(),
         updatedAt: new Date(),
+        isLogado: false,
       },
       {
         nome: 'José',
@@ -72,6 +76,7 @@ module.exports = {
         dataNascimento: '1980-11-10',
         createdAt: new Date(),
         updatedAt: new Date(),
+        isLogado: false,
       },
     ]);
   },

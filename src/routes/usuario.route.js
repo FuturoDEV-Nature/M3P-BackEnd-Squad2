@@ -22,6 +22,14 @@ usuarioRoutes.post('/', UsuarioController.cadastrar
     */
 );
 
+usuarioRoutes.post('/islogado', UsuarioController.isLogado);
+
+usuarioRoutes.post('/islogout', UsuarioController.isLogOut);
+
+usuarioRoutes.get('/countlogados', auth, UsuarioController.getCountLogados);
+
+
+
 usuarioRoutes.get('/:cpf', UsuarioController.verificarCPF);
 
 
