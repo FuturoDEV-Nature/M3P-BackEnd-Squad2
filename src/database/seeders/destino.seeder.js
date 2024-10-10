@@ -41,7 +41,7 @@ module.exports = {
         descricao:
           "Lugar incrível, diferente de todos os outros atrativos na ilha. Seguro, fácil estacionar.",
         maps_url: "https://maps.app.goo.gl/cA5J2ew4PN4cLYcA6",
-        usuario_id: "1",      
+        usuario_id: "3",      
       },
       {     
         nomelocal: "Parque da Luz",
@@ -54,7 +54,7 @@ module.exports = {
         descricao:
           "Localizado na cabeceira insular da Ponte Hercílio Luz, em Florianópolis, é uma grande área verde (aproximadamente 40.000 m2), arborizada, com trilhas, área para piquenique, campo de futebol e muito bancos para sentar e ver a vida",
         maps_url: "https://maps.app.goo.gl/F7RQNU7bH4QVvr4g6",
-        usuario_id: "2",  
+        usuario_id: "4",  
       },
       {
         nomelocal: "Parque de Coqueiros",
@@ -67,7 +67,7 @@ module.exports = {
         descricao:
           "O Parque de Coqueiros em Florianópolis é um verdadeiro refúgio urbano! Perfeito para atividades ao ar livre, oferece pistas para caminhada, áreas verdes bem cuidadas e uma vista linda da Baía Sul",
         maps_url: "https://maps.app.goo.gl/1tZNhzi8RTCAUYzdA",
-        usuario_id: "1",  
+        usuario_id: "5",  
       },
     ]);
   },
