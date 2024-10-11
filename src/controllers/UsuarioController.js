@@ -4,19 +4,17 @@ const jwt = require('jsonwebtoken');
 class UsuarioController {
   async cadastrar(req, res) {
     try {
-      const {
-        email,
-        senha,
-        nome,
-        sobrenome,
-        sexo,
-        cpf,
-        dataNascimento,
-        endereco,
-        numero,
-        cep,
-      } = req.body;
-
+        const email = req.body.email;
+        const senha = req.body.senha;
+        const nome = req.body.nome;
+        const sobrenome = req.body.sobrenome;
+        const sexo = req.body.sexo;
+        const cpf = req.body.cpf;
+        const dataNascimento = req.body.dataNascimento;
+        const endereco = req.body.endereco;
+        const numero = req.body.numero;
+        const cep = req.body.cep;  
+      console.log("nome", nome, "sobrenome", sobrenome, "cpf", cpf, "endereco", endereco, "numero", numero, "cep", cep)
       if (!nome || !sobrenome || !cpf || !endereco || !numero || !cep) {
         return res.status(400).json({
           message:
@@ -25,16 +23,16 @@ class UsuarioController {
       }
 
       const novoUsuario = await Usuario.create({
-        email,
-        senha,
-        nome,
-        sobrenome,
-        sexo,
-        cpf,
-        dataNascimento,
-        endereco,
-        numero,
-        cep,
+        email: email,
+        senha: senha,
+        nome: nome,
+        sobrenome: sobrenome,
+        sexo: sexo,
+        cpf: cpf,
+        dataNascimento: dataNascimento,
+        endereco: endereco,
+        numero: numero,
+        cep: cep,
       });
 
       res.status(201).json(novoUsuario);
