@@ -1,31 +1,87 @@
-const { QueryInterface, Sequelize } = require("sequelize");
-const Usuario = require("../../models/Usuario")
+'use strict';
 
 module.exports = {
-    up: async (QueryInterface, Sequelize) => {
-        await Usuario.bulkCreate([
-            {
-                nome: 'novousuario1',
-                sexo: 'masculino',
-                cpf: '01010100100',
-                email: 'novousuario1@email.com',
-                senha: '123456'
-            },
-            {
-                nome: 'novousuario2',
-                sexo: 'feminino',
-                cpf: '01010100105',
-                email: 'novousuario2@email.com',
-                senha: '123456'
-            }
-        ])
-    },
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkInsert('usuarios', [
+      {
+        nome: 'Pedro',
+        sobrenome: 'Oliveira',
+        sexo: 'masculino',
+        cpf: '23456789001',
+        email: 'pedro.oliveira@example.com',
+        senha: 'senha123',
+        endereco: 'Rua B',
+        numero: '200',
+        cep: '88025-001',
+        dataNascimento: '1985-08-20',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        isLogado: false,
+      },
+      {
+        nome: 'Maria',
+        sobrenome: 'Silva',
+        sexo: 'feminino',
+        cpf: '23456789002',
+        email: 'maria.silva@example.com',
+        senha: 'senha123',
+        endereco: 'Avenida A',
+        numero: '100',
+        cep: '88025-002',
+        dataNascimento: '1990-01-15',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        isLogado: false,
+      },
+      {
+        nome: 'Carlos',
+        sobrenome: 'Santos',
+        sexo: 'masculino',
+        cpf: '23456789003',
+        email: 'carlos.santos@example.com',
+        senha: 'senha123',
+        endereco: 'Praça C',
+        numero: '300',
+        cep: '88025-003',
+        dataNascimento: '1988-05-30',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        isLogado: false,
+      },
+      {
+        nome: 'Ana',
+        sobrenome: 'Pereira',
+        sexo: 'feminino',
+        cpf: '23456789004',
+        email: 'ana.pereira@example.com',
+        senha: 'senha123',
+        endereco: 'Rua D',
+        numero: '400',
+        cep: '88025-004',
+        dataNascimento: '1992-03-22',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        isLogado: false,
+      },
+      {
+        nome: 'José',
+        sobrenome: 'Almeida',
+        sexo: 'masculino',
+        cpf: '23456789005',
+        email: 'jose.almeida@example.com',
+        senha: 'senha123',
+        endereco: 'Rua E',
+        numero: '500',
+        cep: '88025-005',
+        dataNascimento: '1980-11-10',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        isLogado: false,
+      },
+    ]);
+  },
 
-    down: async (QueryInterface, Sequelize) => {
-        await Usuario.destroy({
-            email: [
-                'novousuario1@email.com',
-                'novousuario2@email.com'
-            ] })
-    }
-}
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('usuarios', null, {});
+  },
+};

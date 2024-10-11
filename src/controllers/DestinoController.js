@@ -6,8 +6,8 @@ class DestinoController {
 
     async cadastrar(req, res) {
         try {
-            const { cep, endereco, descricao } = req.body;
-            const usuario_id = req.usuario_id;
+            console.log(req.body)
+            const { nomelocal, cep, endereco, numero, cidade, descricao, maps_url, usuario_id } = req.body;
 
             if (!usuario_id) {
                 return res.status(401).json({ message: 'ID do usuário não fornecido' });
@@ -17,17 +17,29 @@ class DestinoController {
                 return res.status(400).json({ message: 'CEP, endereço e descrição são obrigatórios' });
             }
 
-            const { latitude, longitude } = await mapService.getCepCoordinates(cep);
-            const mapsUrl = mapService.generateGoogleMapsLink(latitude, longitude);
+            const coordinates = await mapService.getCepCoordinates(cep);
+
+            if (!coordinates || !coordinates.latitude || !coordinates.longitude) {
+                return res.status(400).json({ message: 'Coordenadas não encontradas para o CEP fornecido' });
+            }
+            
+            const { latitude, longitude } = coordinates;
+            
+
+
+            // const { latitude, longitude } = await mapService.getCepCoordinates(cep);
+            // console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+            // const mapsUrl = mapService.generateGoogleMapsLink(latitude, longitude);
 
             const novoDestino = await Destino.create({
-                cep,
-                endereco,
+                nomelocal,
+               cep,
+               endereco,
+                numero,
+                cidade,
                 descricao,
-                latitude,
-                longitude,
-                usuario_id,
-                maps_url: mapsUrl
+               maps_url,
+               usuario_id               
             });
 
             res.status(201).json(novoDestino);
@@ -65,7 +77,7 @@ class DestinoController {
     async atualizar(req, res) {
         try {
             const { id } = req.params;
-            const { cep, endereco, descricao } = req.body;
+            const { nomelocal, cep, endereco, numero, cidade, descricao, maps_url } = req.body;
 
             const destino = await Destino.findByPk(id);
             if (!destino) {
@@ -74,12 +86,16 @@ class DestinoController {
 
             const { latitude, longitude } = await mapService.getCepCoordinates(cep);
 
+            destino.nomelocal = nomelocal;
             destino.cep = cep;
             destino.endereco = endereco;
-            destino.descricao = descricao;
+            destino.numero = numero;
+            destino.cidade = cidade;
             destino.latitude = latitude;
             destino.longitude = longitude;
-
+            destino.descricao = descricao;
+            destino.maps_url = maps_url;
+            
             await destino.save();
 
             res.status(200).json({ message: 'Destino atualizado com sucesso' });
@@ -108,18 +124,18 @@ class DestinoController {
     }
 
     async listarDestinoEspecifico(req, res) {
-        try {
+            try {
             const { destino_id } = req.params;
-            const usuario_id = req.usuario_id
             const destino = await Destino.findOne({
-                where: { usuario_id, destino_id }
+                where: { destino_id }
             });
     
             if (!destino) {
                 return res.status(404).json({ message: "Destino não encontrado" });
             }
     
-            res.json( {link: destino.maps_url });
+            res.json(destino);
+            //res.json( {link: destino.maps_url });
         } catch (error) {
             console.error(error.message);
             res.status(500).json({ error: 'Erro ao listar destino específico do usuário' });
@@ -148,6 +164,25 @@ class DestinoController {
         }
     }
     
+    async listarDestinoUsuario(req, res) {
+        try {
+          const { id } = req.params;
+    
+          const local = await Destino.findAll({ where: { usuario_id: id } });
+    
+          if (!local) {
+            return res.status(404).json({ message: "Local não encontrado" });
+       }
+    
+         res.json(local);
+       } catch (error) {
+        console.log(error.message);
+        res.status(500).json({
+           error: "Não é possível listar os locais do usuário",
+          error: error,
+        });
+       }
+       }
 }
 
 module.exports = new DestinoController();

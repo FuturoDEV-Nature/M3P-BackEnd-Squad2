@@ -8,7 +8,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./doc.swagger.json');
 
 routes.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-routes.use('/usuarios', usuarioRoutes)
+routes.use('/usuario', usuarioRoutes)
 routes.use('/login', loginRoutes)
 routes.use('/destino', destinoRoutes)
 

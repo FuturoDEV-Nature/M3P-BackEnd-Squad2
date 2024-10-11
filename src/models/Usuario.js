@@ -11,6 +11,10 @@ const Usuario = connection.define('usuarios', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    sobrenome: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     sexo: {
         type: DataTypes.ENUM('masculino', 'feminino', 'outro'),
         allowNull: false
@@ -31,6 +35,27 @@ const Usuario = connection.define('usuarios', {
     senha: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    dataNascimento: {
+        type: DataTypes.DATE,
+        allowNull: true
+    },
+    endereco: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    numero: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    cep: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    isLogado: {
+        type:DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     }
 }, {
     timestamps: true

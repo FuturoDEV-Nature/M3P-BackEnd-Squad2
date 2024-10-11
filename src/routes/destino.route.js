@@ -4,7 +4,7 @@ const { auth } = require('../middleware/auth');
 
 const destinoRoutes = new Router();
 
-destinoRoutes.post('/', auth, DestinoController.cadastrar
+destinoRoutes.post('/cadastrolocais', auth, DestinoController.cadastrar
         /*  
         #swagger.tags = ['Destino']
         #swagger.parameters['body'] = {
@@ -20,7 +20,7 @@ destinoRoutes.post('/', auth, DestinoController.cadastrar
     */
 );
 
-destinoRoutes.get('/', auth, DestinoController.listar
+destinoRoutes.get('/', DestinoController.listar
     /*  
     #swagger.tags = ['Destino']
     #swagger.parameters['auth'] = {
@@ -31,7 +31,7 @@ destinoRoutes.get('/', auth, DestinoController.listar
     */
 );
 
-destinoRoutes.get('/:id', auth, DestinoController.listarUm
+// destinoRoutes.get('/:id', auth, DestinoController.listarUm
     /*  
     #swagger.tags = ['Destino']
     #swagger.parameters['auth'] = {
@@ -45,9 +45,9 @@ destinoRoutes.get('/:id', auth, DestinoController.listarUm
         description: 'Lista destino por ID'
     }
     */
-);
+// );
 
-destinoRoutes.put('/:id', auth, DestinoController.atualizar
+destinoRoutes.put('/cadastrolocais/:id', auth, DestinoController.atualizar
     /*  
     #swagger.tags = ['Destino']
     #swagger.parameters['auth'] = {
@@ -79,7 +79,7 @@ destinoRoutes.delete('/:id', auth, DestinoController.excluir
     */
 );
 
-destinoRoutes.get('/:destino_id', auth, DestinoController.listarDestinoEspecifico
+destinoRoutes.get('/cadastrolocais/:destino_id', auth, DestinoController.listarDestinoEspecifico
     /*  
     #swagger.tags = ['Destino']
     #swagger.parameters['auth'] = {
@@ -110,5 +110,8 @@ destinoRoutes.get('/maps/:destino_id', auth, DestinoController.obterLinkGoogleMa
     }
     */
 );
+
+destinoRoutes.get('/local/:id', auth, DestinoController.listarDestinoUsuario);
+
 
 module.exports = destinoRoutes;

@@ -22,7 +22,18 @@ usuarioRoutes.post('/', UsuarioController.cadastrar
     */
 );
 
-usuarioRoutes.get('/', auth, UsuarioController.listar
+usuarioRoutes.post('/islogado', UsuarioController.isLogado);
+
+usuarioRoutes.post('/islogout', UsuarioController.isLogOut);
+
+usuarioRoutes.get('/countlogados', UsuarioController.getCountLogados);
+
+
+
+usuarioRoutes.get('/:cpf', UsuarioController.verificarCPF);
+
+
+usuarioRoutes.get('/', UsuarioController.listar
     /*  
         #swagger.tags = ['Usuario']
         #swagger.parameters['auth'] = {
@@ -81,32 +92,6 @@ usuarioRoutes.delete('/:id', auth, UsuarioController.excluir
     */
 );
 
-usuarioRoutes.post('/login', UsuarioController.login
-    /*  
-        #swagger.tags = ['Usuario']
-        #swagger.parameters['body'] = {
-            in: 'body',
-            type: 'object',
-            description: 'Realiza login do usuário',
-            schema: {
-                    $email: 'seu@email.com',
-                    $senha: '123456'
-                }
-        }
-    */
-);
-
-usuarioRoutes.get('/isLogado', auth, (req, res) => {
-    res.status(200).json({ message: 'Usuário está logado', userId: req.usuario_id });
-    /*  
-        #swagger.tags = ['Usuario']
-        #swagger.parameters['auth'] = {
-            in: 'header',
-            type: 'string',
-            description: 'Verifica se o usuário está logado'
-        }
-    */
-});
 
 
 module.exports = usuarioRoutes;
