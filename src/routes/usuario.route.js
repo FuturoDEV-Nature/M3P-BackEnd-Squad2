@@ -26,14 +26,14 @@ usuarioRoutes.post('/islogado', UsuarioController.isLogado);
 
 usuarioRoutes.post('/islogout', UsuarioController.isLogOut);
 
-usuarioRoutes.get('/countlogados', auth, UsuarioController.getCountLogados);
+usuarioRoutes.get('/countlogados', UsuarioController.getCountLogados);
 
 
 
 usuarioRoutes.get('/:cpf', UsuarioController.verificarCPF);
 
 
-usuarioRoutes.get('/', auth, UsuarioController.listar
+usuarioRoutes.get('/', UsuarioController.listar
     /*  
         #swagger.tags = ['Usuario']
         #swagger.parameters['auth'] = {

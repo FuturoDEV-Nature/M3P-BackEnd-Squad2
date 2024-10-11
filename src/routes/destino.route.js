@@ -20,7 +20,7 @@ destinoRoutes.post('/cadastrolocais', auth, DestinoController.cadastrar
     */
 );
 
-destinoRoutes.get('/', auth, DestinoController.listar
+destinoRoutes.get('/', DestinoController.listar
     /*  
     #swagger.tags = ['Destino']
     #swagger.parameters['auth'] = {
