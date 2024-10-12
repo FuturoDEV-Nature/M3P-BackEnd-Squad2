@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon src/index.js",
-    "swagger": "node ./autoGen.swagger.js"
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "node src/index.js", 
+  "start:dev": "nodemon src/index.js",  
+  "swagger": "node ./autoGen.swagger.js"
   },
   "keywords": [],
   "author": "",
