@@ -1,30 +1,34 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Projeto de backend usando Vite",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon src/index.js",
-    "swagger": "node ./autoGen.swagger.js"
+    "start": "node src/server.js",
+    "start:dev": "nodemon server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "axios": "^1.6.8",
+    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.18.2",
+    "express": "^4.17.1",
     "jsonwebtoken": "^9.0.2",
-    "pg": "^8.11.5",
-    "pg-connection-string": "^2.6.0",
-    "sequelize": "^6.37.3",
-    "swagger-autogen": "^2.23.7",
-    "swagger-ui-express": "^5.0.0"
+    "pg": "^8.13.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.4",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22",
-    "sequelize-cli": "^6.6.2"
-  }
+    "vite": "^5.4.8",
+    "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "vite",
+    "backend",
+    "express"
+  ],
+  "author": "Seu Nome",
+  "license": "MIT"
 }
